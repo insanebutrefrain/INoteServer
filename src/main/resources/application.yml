@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: INoteServer
+  datasource:
+    username: root
+    password: "123456"
+    url: jdbc:mysql://localhost:3306/inote?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true  # 显示 SQL 语句（默认只显示到控制台，不带参数）
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true  # 格式化 SQL
+        use_sql_comments: true  # 添加注释
+        # 启用参数日志（关键配置）
+        hibernate.show_sql: true
+        hibernate.format_sql: true
+        # 将参数值打印到日志
+        logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+server:
+  port: 8080
+
+logging:
+  level:
+    # 设置全局日志级别
+    root: INFO
+    # 为特定包设置级别
+    insane.inoteserver.controller: DEBUG
+    org.springframework: WARN
+
+  # 控制台输出格式
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+  # 文件输出配置（可选）
+  file:
+    name: logs/app.log
+    max-size: 10MB
+    max-history: 7

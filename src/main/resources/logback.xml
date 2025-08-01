@@ -1,0 +1,14 @@
+<configuration>
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- 设置日志级别为 INFO -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+    <!-- 为你的 Controller 包设置 DEBUG 级别 -->
+    <logger name="insane.inoteserver.controller" level="DEBUG" />
+</configuration>
