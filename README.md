@@ -1,1 +1,2 @@
-iNote服务端，基于Spring Boot, Spring MVC
+iNote服务端，基于Spring Boot, Spring Jpa
+
