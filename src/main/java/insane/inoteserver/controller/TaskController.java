@@ -22,7 +22,6 @@ public class TaskController {
 
     @PutMapping("/update")
     public Task updateTask(@RequestBody Task task) {
-        System.out.println("哈哈哈哈哈" + task.toString());
         return taskRepository.saveAndFlush(task);
     }
 
