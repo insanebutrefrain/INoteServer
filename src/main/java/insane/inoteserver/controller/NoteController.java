@@ -25,10 +25,15 @@ public class NoteController {
         return noteRepository.saveAndFlush(note);
     }
 
-    @DeleteMapping("/delete")
-    public void deleteNote(@RequestBody Note note) {
-        NoteId id = new NoteId(note.getCreateTime(), note.getUser());
-        noteRepository.deleteById(id);
+    @PutMapping("/delete")
+    public Boolean deleteNote(@RequestBody Note note) {
+        try {
+            NoteId id = new NoteId(note.getCreateTime(), note.getUser());
+            noteRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @GetMapping("/getAll/{user}")

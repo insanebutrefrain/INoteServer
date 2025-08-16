@@ -25,10 +25,15 @@ public class TaskController {
         return taskRepository.saveAndFlush(task);
     }
 
-    @DeleteMapping("/delete")
-    public void deleteTask(@RequestBody Task task) {
-        TaskId id = new TaskId(task.getCreateTime(), task.getUser());
-        taskRepository.deleteById(id);
+    @PutMapping("/delete")
+    public Boolean deleteTask(@RequestBody Task task) {
+        try {
+            TaskId id = new TaskId(task.getCreateTime(), task.getUser());
+            taskRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @GetMapping("/getAll/{user}")

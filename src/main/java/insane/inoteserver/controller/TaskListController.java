@@ -25,10 +25,15 @@ public class TaskListController {
         return taskListRepository.save(taskList);
     }
 
-    @DeleteMapping("/delete")
-    public void deleteTaskList(@RequestBody TaskList taskList) {
-        TaskListId id = new TaskListId(taskList.getCreateTime(), taskList.getUser());
-        taskListRepository.deleteById(id);
+    @PutMapping("/delete")
+    public Boolean deleteTaskList(@RequestBody TaskList taskList) {
+        try {
+            TaskListId id = new TaskListId(taskList.getCreateTime(), taskList.getUser());
+            taskListRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @GetMapping("/getAll/{user}")

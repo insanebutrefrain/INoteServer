@@ -27,11 +27,15 @@ public class TodoController {
         return todoRepository.saveAndFlush(todo);
     }
 
-    @DeleteMapping("/delete")
-    public void deleteTodo(@RequestBody Todo todo) {
-        TodoId id = new TodoId(todo.getCreateTime(), todo.getUser());
-
-        todoRepository.deleteById(id);
+    @PutMapping("/delete")
+    public Boolean deleteTodo(@RequestBody Todo todo) {
+        try {
+            TodoId id = new TodoId(todo.getCreateTime(), todo.getUser());
+            todoRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @GetMapping("/getAll/{user}")

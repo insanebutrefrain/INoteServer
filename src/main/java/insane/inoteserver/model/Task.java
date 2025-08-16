@@ -15,7 +15,7 @@ public class Task {
     @Column(name = "is_over", nullable = false)
     private Boolean isOver;
 
-    @Column(name =  "body", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "body", nullable = false, columnDefinition = "TEXT")
     private String body;
 
     @Id

@@ -27,9 +27,14 @@ public class UserController {
         return userRepository.saveAndFlush(user);
     }
 
-    @DeleteMapping("/delete")
-    public void deleteUser(@RequestBody User user) {
-        userRepository.deleteById(user.getId());
+    @PutMapping("/delete")
+    public Boolean deleteUser(@RequestBody User user) {
+        try {
+            userRepository.deleteById(user.getId());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 
